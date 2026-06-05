@@ -1,0 +1,18 @@
+node_modules
+dist
+.DS_Store
+.vercel
+*.log
+STREAMING_OUTCOME_PROPOSAL.md
+
+# Environment files (a bare .env is NOT covered by .env.local — guard it explicitly)
+.env*
+!.env.example
+
+# AI tool session / local state
+.claude/sessions/
+.claude/cache/
+settings.local.json
+.cursor/
+.aider*
+.codeium/

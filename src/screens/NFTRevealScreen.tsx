@@ -1,0 +1,41 @@
+// NFTRevealScreen — the collectibles reveal, the FIRST major beat (the
+// treasure chest precedes it and provides the context).
+//
+// The shelf fills from the live attestation stream. There is no known total
+// upfront anymore, so the reveal doesn't wait for a fixed count — it lets
+// the user collect whatever arrives and fires the finale once the user has
+// stored everything AND the stream has "settled" (`streamSettled`, computed
+// in App: outcome resolved / stream went quiet / all 10 in / foreground cap).
+// On Continue, App routes to the membership verdict if the outcome resolved,
+// otherwise to the Prizes-chat handoff.
+
+import type { RefObject } from 'react'
+import { useEffect } from 'react'
+import Stage from '../components/Stage'
+import { sendFlowEvent } from '../bridge/send'
+import { bufferedAttestationCount } from '../bridge/attestations'
+
+interface NFTRevealScreenProps {
+  frameRef: RefObject<HTMLDivElement>
+  /** True once the webview stops waiting for more cards. Drives the finale. */
+  streamSettled: boolean
+  onContinue: () => void
+}
+
+export default function NFTRevealScreen({ frameRef, streamSettled, onContinue }: NFTRevealScreenProps) {
+  useEffect(() => {
+    // count = attestations received so far (no known total upfront).
+    sendFlowEvent({ type: 'flow.nft_reveal_started', count: bufferedAttestationCount() })
+  }, [])
+
+  return (
+    <Stage
+      frameRef={frameRef}
+      streamSettled={streamSettled}
+      onComplete={() => {
+        sendFlowEvent({ type: 'flow.nft_reveal_complete' })
+        onContinue()
+      }}
+    />
+  )
+}
