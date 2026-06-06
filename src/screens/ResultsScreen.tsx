@@ -50,8 +50,10 @@ export default function ResultsScreen({ outcome, displayName, onContinue }: Resu
   useEffect(() => {
     if (reduced) {
       // Reduced-motion path: snap all elements to final state.
+      // celebrationBg/Headline only mount when isCelebration; filter nulls so
+      // gsap.set never gets a null target (it throws on null inside an array).
       const els = [celebrationBgRef.current, celebrationHeadlineRef.current,
-                   summaryRef.current, ctaRef.current]
+                   summaryRef.current, ctaRef.current].filter(Boolean)
       gsap.set(els, { opacity: 1, y: 0, scale: 1 })
       if (celebrationBgRef.current) {
         gsap.set(celebrationBgRef.current, { opacity: 0.6, xPercent: -50, yPercent: -50 })

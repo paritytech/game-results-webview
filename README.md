@@ -1,3 +1,6 @@
+> [!WARNING]
+> The following is a prototype, reference implementation, and proof-of-concept. This open source code is provided for research, experimentation, and developer education only. This code has not been audited, is actively experimental, and may contain bugs, vulnerabilities, or incomplete features. Use at your own risk.
+
 <div align="center">
 
 # game-results
@@ -67,6 +70,7 @@ outcome) so you can walk the entire flow:
 - **mock buttons** — member win/loss, new member (won / name-taken / unknown / async availability), candidate, skunk, …
 - **slow → handoff** — streams a few cards but never resolves an outcome, exercising the "still arriving → app" handoff.
 - **push availability** — simulate native's async username-availability result (`available` / `taken` / `unknown`).
+- **reduced motion** — toggle the `prefers-reduced-motion` path on/off (overriding the OS setting) and replay the current mock, so you can exercise the reduced-motion branches without changing system preferences.
 
 ### URL parameters
 
@@ -74,6 +78,7 @@ outcome) so you can walk the entire flow:
 |---|---|
 | `?dev=1` | Show the dev mock panel. |
 | `?embed=1` | Force the embedded-in-native layout (the desktop phone-frame mock collapses to fill the viewport) without a native host. |
+| `?reduced=1` | Force the reduced-motion path on (overrides the OS `prefers-reduced-motion` setting). Reproducible from a URL; the dev panel has a live toggle for the same override. |
 
 ### Scripts
 

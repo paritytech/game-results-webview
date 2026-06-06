@@ -24,13 +24,24 @@ export const EASE = {
   settleSpring: 'elastic.out(1, 0.55)'
 } as const
 
+// Dev/test override for the reduced-motion preference. When non-null it takes
+// precedence over the OS media query, so the reduced-motion branches can be
+// exercised from the dev panel (or the `?reduced=1` URL param, wired in App.tsx)
+// without changing system settings. `null` = defer to the OS.
+let reducedMotionOverride: boolean | null = null
+
+export function setReducedMotionOverride(value: boolean | null): void {
+  reducedMotionOverride = value
+}
+
 /** True if the user has requested reduced motion in their OS / browser.
  *  GSAP timelines should check this and either short-circuit celebration
  *  beats entirely or replace springy curves with quick fades.
  *
- *  Read on each call (not cached) so the screen reacts if the user
- *  toggles the OS setting while the app is open. */
+ *  Read on each call (not cached) so the screen reacts if the user toggles the
+ *  OS setting — or the dev override — while the app is open. */
 export function prefersReducedMotion(): boolean {
+  if (reducedMotionOverride !== null) return reducedMotionOverride
   if (typeof window === 'undefined' || !window.matchMedia) return false
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
 }

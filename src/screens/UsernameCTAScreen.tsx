@@ -124,7 +124,7 @@ function AvailableVariant({ stem, previousUsername, onNext }: AvailableProps) {
       // Reduced-motion path: snap all elements to final state with a
       // quick fade. No suffix drop, no glow yoyo, no sparkle burst,
       // no haptic finale.
-      const els = [titleRef.current, hintRef.current, stemRef.current, noteRef.current, ctaRef.current]
+      const els = [titleRef.current, hintRef.current, stemRef.current, noteRef.current, ctaRef.current].filter(Boolean)
       gsap.set(els, { opacity: 1, y: 0, scale: 1 })
       // Suffix stays visible (we're not animating it away) so the user
       // still sees the candidate handle they had.
@@ -265,7 +265,9 @@ function TakenVariant({ name, previousUsername, alternatives, onNext }: TakenPro
 
   useEffect(() => {
     if (reduced) {
-      const els = [titleRef.current, subheadRef.current, altsRef.current, keepRef.current, noteRef.current, ctaRef.current]
+      // altsRef/keepRef only mount when hasAlts/hasKeep; filter nulls so
+      // gsap.set never gets a null target (it throws on null inside an array).
+      const els = [titleRef.current, subheadRef.current, altsRef.current, keepRef.current, noteRef.current, ctaRef.current].filter(Boolean)
       gsap.set(els, { opacity: 1, y: 0 })
       setCtaReady(true)
       return

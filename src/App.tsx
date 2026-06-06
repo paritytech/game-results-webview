@@ -17,6 +17,7 @@ import { sendFlowEvent } from './bridge/send'
 import { fetchDisplayName } from './bridge/fetchName'
 import type { GameResultsInput, GameOutcome, UsernameAvailability } from './bridge/types'
 import { DEV_MOCKS } from './devMocks'
+import { setReducedMotionOverride } from './anim/easings'
 
 // Dev-mode helper: simulate native streaming attestations into the webview
 // after a mock is loaded, then firing setGameOutcome the way native would
@@ -108,6 +109,13 @@ const isEmbedded =
     /[?&]embed=1\b/.test(window.location.search)
   )
 
+// `?reduced=1` forces the reduced-motion path on (overriding the OS setting),
+// so the reduced-motion branches are reproducible from a URL — handy for bug
+// repro. The dev panel exposes a live toggle for the same override.
+const forceReducedFromUrl =
+  typeof window !== 'undefined' && /[?&]reduced=1\b/.test(window.location.search)
+if (forceReducedFromUrl) setReducedMotionOverride(true)
+
 export default function App() {
   const frameRef = useRef<HTMLDivElement>(null)
   const [input, setInput] = useState<GameResultsInput | null>(() => readInitialInput())
@@ -127,6 +135,11 @@ export default function App() {
   const [streamSettled, setStreamSettled] = useState(false)
   // Lets the user X out the dev panel for this session — reloading restores it.
   const [devPanelOpen, setDevPanelOpen] = useState(true)
+  // Dev-only: force the reduced-motion path on/off without touching OS settings.
+  const [forceReduced, setForceReduced] = useState(forceReducedFromUrl)
+  // Replays the current mock scenario (set by loadMock / devSlowNoOutcome) so a
+  // reduced-motion toggle takes effect at once — screens read the pref at mount.
+  const replayScenarioRef = useRef<(() => void) | null>(null)
   const hasFiredReady = useRef(false)
   const hasFiredPackShown = useRef(false)
   const hasFiredResultsShown = useRef(false)
@@ -385,6 +398,7 @@ export default function App() {
   // independent upfront input + a GameOutcome delivered over the simulated
   // stream. This exercises the real streaming-native path end to end.
   function loadMock(buildFn: () => GameResultsInput): void {
+    replayScenarioRef.current = () => loadMock(buildFn)
     const mock = buildFn()
     const passed = mock.attestations.passed === true
     const total = mock.attestations.total
@@ -409,9 +423,19 @@ export default function App() {
     simulateNativeStream(streamCount, payload)
   }
 
+  // Dev-only: flip the reduced-motion override and replay the current scenario
+  // so the reduced-motion branch (read at screen mount) takes effect now.
+  function toggleReducedMotion(): void {
+    const next = !forceReduced
+    setForceReduced(next)
+    setReducedMotionOverride(next)
+    replayScenarioRef.current?.()
+  }
+
   // Dev helper: a passing-looking stream that NEVER resolves an outcome, so
   // the reveal stalls into the Prizes-chat handoff.
   function devSlowNoOutcome(): void {
+    replayScenarioRef.current = devSlowNoOutcome
     startMockSession({
       attestations: { total: 10 },
       member: { justBecameMember: false, displayName: 'BYTEBORO' },
@@ -514,6 +538,16 @@ export default function App() {
             title="Stream a few attestations but never resolve an outcome — exercises the stall → Prizes-chat handoff"
           >
             slow → handoff
+          </button>
+          <span className="dev-panel-label">↪ reduced motion</span>
+          <button
+            type="button"
+            className="dev-panel-btn"
+            aria-pressed={forceReduced}
+            onClick={toggleReducedMotion}
+            title="Force prefers-reduced-motion on/off (overrides the OS setting) and replay the current mock — exercises the reduced-motion branches"
+          >
+            {forceReduced ? 'reduced: on' : 'reduced: off'}
           </button>
           <span className="dev-panel-label">↪ push availability</span>
           <button

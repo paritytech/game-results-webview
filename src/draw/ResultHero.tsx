@@ -109,7 +109,9 @@ export default function ResultHero({
   // Entrance.
   useEffect(() => {
     if (reduced) {
-      const els = [rootRef.current, headlineRef.current, subRef.current, ticketRef.current, ctaRef.current]
+      // subRef only mounts when subText is present; filter nulls so gsap.set
+      // never gets a null target (it throws on null inside an array).
+      const els = [rootRef.current, headlineRef.current, subRef.current, ticketRef.current, ctaRef.current].filter(Boolean)
       gsap.set(els, { opacity: 1, y: 0, scale: 1 })
       setCtaReady(true)
       return
