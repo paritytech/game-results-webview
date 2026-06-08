@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.0765 1049" width="401.0765" height="1049" style="--bg:#FFFFFF;--fg:#1F2328;--line:#8B949E;--accent:#E6007A;--muted:#57606A;--surface:#F6F8FA;--border:#D0D7DE;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="seq-arrow" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" />
+  </marker>
+  <marker id="seq-arrow-open" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse">
+    <polyline points="0 0, 8 2.5, 0 5" fill="none" stroke="var(--_arrow)" stroke-width="1" />
+  </marker>
+</defs>
+<g class="block" data-type="loop" data-label="per attestation, real time">
+  <rect x="30" y="320" width="278.32300000000004" height="60" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="30" y="320" width="169.45" height="18" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="36" y="329" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.8499999999999996">loop [per attestation, real time]</text>
+</g>
+<g class="block" data-type="alt" data-label="count hits threshold (6) = PASS">
+  <rect x="30" y="388" width="278.32300000000004" height="139" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="30" y="388" width="197.17" height="18" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="36" y="397" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.8499999999999996">alt [count hits threshold (6) = PASS]</text>
+  <line x1="30" y1="471" x2="308.32300000000004" y2="471" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+  <text x="38" y="485" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">[~10-min timeout = FAIL (under review)]</text>
+  <line x1="30" y1="585" x2="308.32300000000004" y2="585" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+  <text x="38" y="599" font-size="11" text-anchor="start" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">[never resolves]</text>
+</g>
+<g class="block" data-type="opt" data-label="new-member username">
+  <rect x="30" y="656" width="278.32300000000004" height="180" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="30" y="656" width="162.19" height="18" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="36" y="665" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.8499999999999996">opt [new-member username]</text>
+</g>
+<g class="block" data-type="opt" data-label="prize draw (passed members)">
+  <rect x="30" y="844" width="278.32300000000004" height="100" rx="0" ry="0" fill="none" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="30" y="844" width="195.85" height="18" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="36" y="853" font-size="11" font-weight="600" fill="var(--_text-sec)" dy="3.8499999999999996">opt [prize draw (passed members)]</text>
+</g>
+<line class="lifeline" data-actor="N" x1="105.14000000000001" y1="70" x2="105.14000000000001" y2="1019" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="W" x1="254.30150000000003" y1="70" x2="254.30150000000003" y2="1019" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" />
+<g class="message" data-from="W" data-to="N" data-label="flow.ready" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="90" x2="105.14000000000001" y2="90" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="80" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.ready</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="setGameResults(input)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="130" x2="254.30150000000003" y2="130" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="120" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">setGameResults(input)</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.pack_shown" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="212" x2="105.14000000000001" y2="212" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="202" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.pack_shown</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.pack_opened" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="252" x2="105.14000000000001" y2="252" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="242" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.pack_opened</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.nft_reveal_started" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="292" x2="105.14000000000001" y2="292" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="282" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.nft_reveal_started</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="pushAttestation(index, hash)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="360" x2="254.30150000000003" y2="360" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="350" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">pushAttestation(index, hash)</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="setGameOutcome(passed:true)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="428" x2="254.30150000000003" y2="428" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="418" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">setGameOutcome(passed:true)</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="setGameOutcome(passed:false)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="507" x2="254.30150000000003" y2="507" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="497" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">setGameOutcome(passed:false)</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.nft_reveal_complete" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="613" x2="105.14000000000001" y2="613" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="603" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.nft_reveal_complete</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.request_display_name" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="696" x2="105.14000000000001" y2="696" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="686" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.request_display_name</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="setDisplayName(name)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="736" x2="254.30150000000003" y2="736" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="726" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">setDisplayName(name)</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.username_availability_needed" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="776" x2="105.14000000000001" y2="776" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="766" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.username_availability_needed</text>
+</g>
+<g class="message" data-from="N" data-to="W" data-label="setUsernameAvailability(...)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="105.14000000000001" y1="816" x2="254.30150000000003" y2="816" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="806" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">setUsernameAvailability(...)</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.prize_draw_started" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="884" x2="105.14000000000001" y2="884" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="874" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.prize_draw_started</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.prize_draw_complete(won)" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="924" x2="105.14000000000001" y2="924" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="914" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.prize_draw_complete(won)</text>
+</g>
+<g class="message" data-from="W" data-to="N" data-label="flow.complete" data-line-style="solid" data-arrow-head="filled" data-self="false">
+  <line x1="254.30150000000003" y1="964" x2="105.14000000000001" y2="964" stroke="var(--_line)" stroke-width="1" marker-end="url(#seq-arrow)" />
+  <text x="179.72075" y="954" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">flow.complete</text>
+</g>
+<g class="note" data-position="right" data-actors="N">
+  <polygon points="180.28000000000003,138 358.528,138 364.528,144 364.528,161 180.28000000000003,161" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="358.528,138 364.528,144 358.528,144" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="272.404" y="149.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)"><tspan x="272.404" dy="-3.3000000000000007">total, member</tspan><tspan x="272.404" dy="14.3">(gated fields absent)</tspan></text>
+</g>
+<g class="note" data-position="over" data-actors="W">
+  <polygon points="158.9105,165 343.6925000000001,165 349.6925000000001,171 349.6925000000001,188 158.9105,188" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="343.6925000000001,165 349.6925000000001,171 343.6925000000001,171" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="254.30150000000003" y="176.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">boot → chest (else 30s → boot_error)</text>
+</g>
+<g class="note" data-position="over" data-actors="W">
+  <polygon points="137.52650000000006,436 365.0765,436 371.0765,442 371.0765,459 137.52650000000006,459" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="365.0765,436 371.0765,442 365.0765,442" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="254.30150000000003" y="447.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)"><tspan x="254.30150000000003" dy="-3.3000000000000007">+gated fields;</tspan><tspan x="254.30150000000003" dy="14.3">pack streams to 10, then settles</tspan></text>
+</g>
+<g class="note" data-position="over" data-actors="W">
+  <polygon points="215.63750000000005,515 286.9655,515 292.9655,521 292.9655,538 215.63750000000005,538" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="286.9655,515 292.9655,521 286.9655,521" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="254.30150000000003" y="526.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">settles now</text>
+</g>
+<g class="note" data-position="over" data-actors="W">
+  <polygon points="164.25650000000002,542 338.3465000000001,542 344.3465000000001,548 344.3465000000001,565 164.25650000000002,565" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="338.3465000000001,542 344.3465000000001,548 338.3465000000001,548" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="254.30150000000003" y="553.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">settle: 10 cards / 9s quiet / 45s cap</text>
+</g>
+<g class="note" data-position="over" data-actors="W">
+  <polygon points="181.18550000000002,621 321.4175,621 327.4175,627 327.4175,644 181.18550000000002,644" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="321.4175,621 327.4175,627 321.4175,627" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="254.30150000000003" y="632.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">outcome? results : handoff</text>
+</g>
+<g class="note" data-position="over" data-actors="N">
+  <polygon points="47.46800000000001,972 156.812,972 162.812,978 162.812,995 47.46800000000001,995" fill="var(--bg)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <polygon points="156.812,972 162.812,978 156.812,978" fill="var(--_inner-stroke)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="105.14000000000001" y="983.5" font-size="11" text-anchor="middle" font-weight="400" fill="var(--_text-muted)" dy="3.8499999999999996">dismisses webview</text>
+</g>
+<g class="actor" data-id="N" data-label="Native (host app)" data-type="participant">
+  <rect x="40" y="30" width="130.28000000000003" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="105.14000000000001" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">Native (host app)</text>
+</g>
+<g class="actor" data-id="W" data-label="WebView" data-type="participant">
+  <rect x="210.28000000000003" y="30" width="88.043" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="254.30150000000003" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="var(--_text)" dy="4.55">WebView</text>
+</g>
+</svg>
