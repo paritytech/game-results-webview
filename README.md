@@ -167,6 +167,17 @@ node scripts/preprocess-chest.mjs          # art-src/chest/ → public/assets/ch
 node scripts/preprocess-draw-tickets.mjs   # art-src/draw/  → public/assets/
 ```
 
+## Security
+
+Before deploying it for real use cases, you are responsible for:
+
+- Reviewing the code yourself, we publish a reference, not a hardened production build
+- Checking that the dependencies are up to date and free of known vulnerabilities
+- Securing your own fork or deployment environment (keys, secrets, network configuration)
+- Tracking the latest tagged release/commits for security fixes; older releases are not backported (exceptions might apply)
+
+For Parity's security disclosure process, and Bug Bounty program, feel free to visit: https://parity.io/bug-bounty
+
 ## License
 
 [MIT](./LICENSE) © Parity Technologies
